@@ -10,16 +10,20 @@
     "test": "jshint test index.js && mocha -R spec",
     "doc": "jsdoc index.js -d doc -R readme.md",
     "cov": "mkdir doc; jscoverage index.js cov.js && COVERAGE=true mocha -R html-cov > doc/coverage.html",
+    "coveralls": "mocha -R mocha-lcov-reporter | coveralls",
+    "deploy": "npm run doc && npm run cov && ./bin/deploy-ghpages",
     "download": "./bin/download",
     "prepublish": "npm run download"
   },
   "author": "Diana Thayer <garbados@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "jscoverage": "^0.5.9",
     "jsdoc": "^3.3.0",
     "jshint": "^2.7.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "mocha-lcov-reporter": "0.0.2"
   },
   "dependencies": {
     "underscore": "^1.8.3"
