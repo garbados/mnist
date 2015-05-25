@@ -59,11 +59,13 @@ function get_training_labels (n, m) {
 }
 
 function get_testing_images (n, m) {
-
+  var fp = path.join(__dirname, 'data', 't10k-images-idx3-ubyte');
+  return get_images(fp, n, m);
 }
 
 function get_testing_labels (n, m) {
-
+  var fp = path.join(__dirname, 'data', 't10k-labels-idx1-ubyte');
+  return get_labels(fp, n, m);
 }
 
 module.exports = {
@@ -86,5 +88,13 @@ module.exports = {
       m = n;
       n = 0;
     }
+
+    var images = get_testing_images(n, m);
+    var labels = get_testing_labels(n, m);
+
+    return {
+      images: images,
+      labels: labels
+    };
   }
 };
