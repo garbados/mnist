@@ -1,7 +1,6 @@
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
-var BitArray = require('bit-array');
 
 function get_images (fp, n, m) {
   // get data
