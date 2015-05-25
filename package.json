@@ -11,7 +11,9 @@
     "doc": "jsdoc index.js -d doc -R readme.md",
     "cov": "mkdir doc; jscoverage index.js cov.js && COVERAGE=true mocha -R html-cov > doc/coverage.html",
     "coveralls": "COVERAGE=true mocha -R mocha-lcov-reporter | coveralls",
-    "deploy": "npm run doc && npm run cov && ./bin/deploy-ghpages"
+    "deploy": "npm run doc && npm run cov && ./bin/deploy-ghpages",
+    "download": "./bin/download",
+    "prepublish": "npm run download"
   },
   "author": "Diana Thayer <garbados@gmail.com>",
   "license": "ISC",
