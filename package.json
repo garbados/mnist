@@ -8,6 +8,8 @@
   },
   "scripts": {
     "test": "jshint test index.js && mocha -R spec",
+    "doc": "jsdoc index.js -d doc -R readme.md",
+    "cov": "mkdir doc; jscoverage index.js cov.js && COVERAGE=true mocha -R html-cov > doc/coverage.html",
     "download": "./bin/download",
     "prepublish": "npm run download"
   },

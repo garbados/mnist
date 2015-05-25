@@ -1,5 +1,9 @@
 var assert = require('assert');
-var mnist = require('../');
+var mnist;
+if (process.env.COVERAGE)
+  mnist = require('../cov');
+else
+  mnist = require('../');
 
 describe('mnist', function () {
   describe('training_data', function () {

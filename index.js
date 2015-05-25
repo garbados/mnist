@@ -79,6 +79,13 @@ function get_testing_labels (n, m) {
 }
 
 module.exports = {
+  /**
+  @description Retrieve a slice (n,m) from the `train-images-idx3-ubyte` and `train-labels-idx1-ubyte` files. 
+  @function
+  @param {number} n - start index of training labels and images to retrieve. if m is undefined, n becomes the end index, while the start index becomes 0.
+  @param {number} m - (optional) end index of training labels and images to retrieve.
+  @returns {object} images: data about the images, labels: data about the labels
+  */
   training: function (n, m) {
     if (m === undefined) {
       m = n;
@@ -90,6 +97,13 @@ module.exports = {
       labels: get_training_labels(n, m)
     };
   },
+  /**
+  @description Retrieve a slice (n,m) from the `t10k-images-idx3-ubyte` and `t10k-labels-idx1-ubyte` files. 
+  @function
+  @param {number} n - start index of training labels and images to retrieve. if m is undefined, n becomes the end index, while the start index becomes 0.
+  @param {number} m - (optional) end index of training labels and images to retrieve.
+  @returns {object} images: data about the images, labels: data about the labels
+  */
   testing: function (n, m) {
     if (m === undefined) {
       m = n;
