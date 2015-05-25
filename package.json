@@ -1,6 +1,6 @@
 {
   "name": "mnist-data",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Utilities for working with the MNIST dataset of handwritten images.",
   "main": "index.js",
   "directories": {
