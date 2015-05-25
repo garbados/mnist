@@ -18,7 +18,26 @@ describe('mnist', function () {
     });
 
     it('should have as many images as labels', function () {
-      assert.equal(this.training_data.images.values.length / 28, this.training_data.labels.values.length);
+      assert.equal(this.training_data.images.values.length, 100);
+      assert.equal(this.training_data.images.values.length, this.training_data.labels.values.length);
+    });
+
+    it('should have label values all between 0 - 9 inclusive', function () {
+      this.training_data.labels.values.forEach(function (i) {
+        assert(i <= 9, i + " > 9");
+        assert(i >= 0, i + " < 0");
+      });
+    });
+
+    it('should have all pixel values between 0 - 255 inclusive', function () {
+      this.training_data.images.values.forEach(function (rows) {
+        rows.forEach(function (columns) {
+          columns.forEach(function (pixel) {
+            assert(pixel <= 255, pixel + " > 255");
+            assert(pixel >= 0, pixel + " < 0");
+          });
+        });
+      });
     });
   });
 
@@ -38,7 +57,26 @@ describe('mnist', function () {
     });
 
     it('should have as many images as labels', function () {
-      assert.equal(this.testing_data.images.values.length / 28, this.testing_data.labels.values.length);
+      assert.equal(this.testing_data.images.values.length, 100);
+      assert.equal(this.testing_data.images.values.length, this.testing_data.labels.values.length);
+    });
+
+    it('should have label values all between 0 - 9 inclusive', function () {
+      this.testing_data.labels.values.forEach(function (i) {
+        assert(i <= 9, i + " > 9");
+        assert(i >= 0, i + " < 0");
+      });
+    });
+
+    it('should have all pixel values between 0 - 255 inclusive', function () {
+      this.testing_data.images.values.forEach(function (rows) {
+        rows.forEach(function (columns) {
+          columns.forEach(function (pixel) {
+            assert(pixel <= 255, pixel + " > 255");
+            assert(pixel >= 0, pixel + " < 0");
+          });
+        });
+      });
     });
   });
 });
