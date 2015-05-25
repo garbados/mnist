@@ -11,13 +11,15 @@ The [MNIST](http://yann.lecun.com/exdb/mnist/) dataset, along with some javascri
 ```javascript
 var mnist = require('mnist-data');
 var training_data = mnist.training(0, 60000);
-var testing_data = mnist.training(0, 10000);
+var testing_data = mnist.testing(0, 10000);
 ```
+
+For more examples, see the [documentation](TODO).
 
 ## Test
 
-  npm test
+    npm test
 
 ## License
 
-The MNIST data does not belong to me, and so it is not included under this project's [ISC](http://opensource.org/licenses/ISC) license.
+The MNIST data does not belong to me, and so it is not included under this project's [ISC](http://opensource.org/licenses/ISC) license. Everything else in the repository is, though.

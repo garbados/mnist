@@ -78,6 +78,25 @@ function get_testing_labels (n, m) {
   return get_labels(fp, n, m);
 }
 
+/**
+@module MNIST
+@description Utilities for working with the MNIST dataset of handwritten images.
+@example
+// require the mnist-data module
+var mnist = require('mnist-data');
+@example
+// retrieve a slice of the first 100 objects from the training set
+var training_data = mnist.training(100);
+training_data.labels.values[0]; // the label 0-9 of the first handwritten digit in the slice
+training_data.images.values[0]; // the matrix of 0-255 greyscale values for each pixel of the 28x28 image
+@example
+// retrieve a slice of the first 100 objects from the testing set
+var testing_data = mnist.testing(100);
+// the label 0-9 of the first handwritten digit in the slice
+testing_data.labels.values[0];
+// the matrix of 0-255 greyscale values for each pixel of the 28x28 image
+testing_data.images.values[0];
+*/
 module.exports = {
   /**
   @description Retrieve a slice (n,m) from the `train-images-idx3-ubyte` and `train-labels-idx1-ubyte` files. 
