@@ -4,17 +4,17 @@ var path = require('path');
 
 function get_images (fp, n, m) {
   // get data
-  var buffer = new Buffer(16 + (Math.pow(28, 2) * (m - n)));
+  var buffer = new Buffer(16 + (Math.pow(28, 2) * (m)));
   var fd = fs.openSync(fp, 'r');
   fs.readSync(fd, buffer, 0, 16, 0);
-  fs.readSync(fd, buffer, 8 * n, 8 * m, null);
+  fs.readSync(fd, buffer, 16, (Math.pow(28, 2) * (m - n)), 16 + Math.pow(28, 2) * n);
   fs.closeSync(fd);
   // parse data
   var magic_number = buffer.readUInt32BE(0);
   var num_items = buffer.readUInt32BE(4);
   var num_rows = buffer.readUInt32BE(8);
   var num_cols = buffer.readUInt32BE(12);
-  var images = _.range(n, m).map(function (i) {
+  var images = _.range(m - n).map(function (i) {
     var offset = 16 + Math.pow(28, 2) * i;
     return _.range(28).map(function (j) {
       return _.range(28).map(function (k) {
@@ -22,7 +22,7 @@ function get_images (fp, n, m) {
       });
     });
   });
-
+  
   return {
     magic_number: magic_number,
     total_num_items: num_items,
@@ -36,10 +36,10 @@ function get_images (fp, n, m) {
 
 function get_labels (fp, n, m) {
   // get data
-  var buffer = new Buffer(60008);
+  var buffer = new Buffer(8 + m);
   var fd = fs.openSync(fp, 'r');
   fs.readSync(fd, buffer, 0, 8, 0);
-  fs.readSync(fd, buffer, 8 * n, 8 * m, null);
+  fs.readSync(fd, buffer, 8, (m - n), 8 + n);
   fs.closeSync(fd);
   // parse data
   var magic_number = buffer.readUInt32BE(0);
@@ -47,7 +47,7 @@ function get_labels (fp, n, m) {
   var labels = _.range(m - n).map(function (i) {
     return buffer.readUInt8(8 + i);
   });
-
+  
   return {
     magic_number: magic_number,
     total_num_items: num_items,
